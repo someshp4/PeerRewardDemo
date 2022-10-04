@@ -13,9 +13,13 @@ import {
   ScrollView,
   Dimensions,
 } from 'react-native';
+import {
+  GIVE_REWARD_MODAL_HEADER,
+  GIVE_REWARD_MODAL_LABELS,
+} from '../constants/AppConstants';
 
 const deviceHeight = Dimensions.get('window').height;
-const requiredHeight = deviceHeight / 4;
+const requiredHeight = deviceHeight / 5;
 
 const GiveRewardModal = ({modalVisible, setModalVisible, addToFeedList}) => {
   const [toName, setToName] = useState('');
@@ -61,21 +65,29 @@ const GiveRewardModal = ({modalVisible, setModalVisible, addToFeedList}) => {
             <View style={styles.modal}>
               <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
                 <View style={styles.modalContent}>
-                  <Text style={styles.modalHeader}>Give Reward</Text>
-                  <Text style={styles.inputLabel}>To</Text>
+                  <Text style={styles.modalHeader}>
+                    {GIVE_REWARD_MODAL_HEADER}
+                  </Text>
+                  <Text style={styles.inputLabel}>
+                    {GIVE_REWARD_MODAL_LABELS.to}
+                  </Text>
                   <TextInput
                     key="To"
                     style={[styles.input, error.toName ? styles.error : {}]}
                     onChangeText={value => setToName(value)}
                   />
-                  <Text style={styles.inputLabel}>Amount</Text>
+                  <Text style={styles.inputLabel}>
+                    {GIVE_REWARD_MODAL_LABELS.amount}
+                  </Text>
                   <TextInput
                     key="Amount"
                     style={[styles.input, error.amount ? styles.error : {}]}
                     keyboardType="numeric"
                     onChangeText={value => setAmount(value)}
                   />
-                  <Text style={styles.inputLabel}>Message</Text>
+                  <Text style={styles.inputLabel}>
+                    {GIVE_REWARD_MODAL_LABELS.message}
+                  </Text>
                   <TextInput
                     key="Message"
                     multiline={true}
@@ -87,18 +99,15 @@ const GiveRewardModal = ({modalVisible, setModalVisible, addToFeedList}) => {
                   <TouchableOpacity
                     style={styles.giveButton}
                     onPress={onGivePress}>
-                    <Text style={styles.giveButtonText}>Give</Text>
-                  </TouchableOpacity>
-                  <TouchableOpacity onPress={() => setModalVisible(false)}>
-                    <Text
-                      style={{
-                        fontSize: 30,
-                        color: '#ffffff',
-                        textAlign: 'right',
-                      }}>
-                      X
+                    <Text style={styles.giveButtonText}>
+                      {GIVE_REWARD_MODAL_LABELS.giveButton}
                     </Text>
                   </TouchableOpacity>
+                  <Text
+                    onPress={() => setModalVisible(false)}
+                    style={styles.closeButton}>
+                    X
+                  </Text>
                 </View>
               </TouchableWithoutFeedback>
             </View>
@@ -170,5 +179,12 @@ const styles = StyleSheet.create({
   giveButtonText: {color: 'black', fontSize: 18, fontWeight: 'normal'},
   error: {
     borderColor: 'red',
+  },
+  closeButton: {
+    position: 'absolute',
+    bottom: 30,
+    right: 30,
+    fontSize: 30,
+    color: '#ffffff',
   },
 });

@@ -14,7 +14,7 @@ import HomeScreen from './src/screens/HomeScreen';
 const App = () => {
   return (
     <SafeAreaProvider>
-      <SafeAreaView style={{flex: 1}}>
+      <SafeAreaView style={{flex: 1, backgroundColor: '#f5f5f0'}}>
         <NavigationContainer>
           <HomeScreen />
         </NavigationContainer>

@@ -1,6 +1,7 @@
 import {createMaterialTopTabNavigator} from '@react-navigation/material-top-tabs';
 import {Dimensions, StyleSheet} from 'react-native';
 import Feed from '../components/Feed';
+import {TAB_ITEMS} from '../constants/AppConstants';
 
 const deviceHeight = Dimensions.get('window').height;
 const requiredHeight = deviceHeight / 5;
@@ -24,9 +25,12 @@ const TabsList = ({feedData, myRewardsData}) => {
           textTransform: 'none',
         },
       }}>
-      <Tab.Screen name="Feed" children={() => <Feed feedsList={feedData} />} />
       <Tab.Screen
-        name="My Rewards"
+        name={TAB_ITEMS.tabOne}
+        children={() => <Feed feedsList={feedData} />}
+      />
+      <Tab.Screen
+        name={TAB_ITEMS.tabTwo}
         children={() => <Feed feedsList={myRewardsData} />}
       />
     </Tab.Navigator>
